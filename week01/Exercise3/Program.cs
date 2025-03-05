@@ -1,32 +1,41 @@
+//Stretch Challenge
+//I added the ability to play the game multiple times
+
 using System;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Random randomGenerator = new Random();
-        int magicNumber = randomGenerator.Next(1, 101);
-
-        int guess = -1;
+        string playAgain = "yes";
         
-        while (guess != magicNumber)
+        while (playAgain.ToLower() == "yes")
         {
-            Console.Write("What is your guess?");
-            guess = int.Parse(Console.ReadLine());
+            Random randomGenerator = new Random();
+            int magicNumber = randomGenerator.Next(1, 101);
+            int guess = -1;
+            
+            while (guess != magicNumber)
+            {
+                Console.Write("What is your guess? ");
+                guess = int.Parse(Console.ReadLine());
 
-            if (magicNumber > guess)
-            {
-                Console.WriteLine("Higher");
+                if (magicNumber > guess)
+                {
+                    Console.WriteLine("Higher");
+                }
+                else if (magicNumber < guess)
+                {
+                    Console.WriteLine("Lower");
+                }
+                else
+                {
+                    Console.WriteLine("You guessed it!");
+                }
             }
-            else if (magicNumber < guess)
-            {
-                Console.WriteLine("Lower");
-            }
-            else
-            {
-                Console.WriteLine("You guessed it!");
-            }
-
-        }                    
+            
+            Console.Write("Do you want to play again? (yes/no): ");
+            playAgain = Console.ReadLine();
+        }
     }
 }
